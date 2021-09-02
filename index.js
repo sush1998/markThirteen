@@ -2,6 +2,7 @@ const birthdayInput=document.querySelector("#birthday")
 const btnCheck=document.querySelector('#btn-check')
 const btnShowNextDate=document.querySelector('#btn-showNextDate')
 const output1=document.querySelector("#output1")
+const output2=document.querySelector("#output2")
 
 function checkIfPlaindrome(str)
 {
@@ -136,6 +137,7 @@ function findNextPlaindromeDate(date)
         if(plaindrome(nextDate))
         {
             console.log(`next palindrome date is ${convertDatetoString(nextDate)} missed by ${count} days`)
+            output2.textContent=`next palindrome date is ${nextDate.day}-${nextDate.month}-${nextDate.year}, missed by ${count} days`
             break;
         }
         else{
@@ -183,5 +185,5 @@ btnCheck.addEventListener('click',()=>
 btnShowNextDate.addEventListener('click',()=>
 {
     console.log('show clicked')
-    
+    output2.style.display='block'
 })
