@@ -6,6 +6,7 @@ const msg=document.querySelector("#msg")
 const output2=document.querySelector("#output2")
 const outputDate=document.querySelector("#output-date")
 const outputCount=document.querySelector('#count')
+const section1=document.querySelector("#section1")
 
 function checkIfPlaindrome(str)
 {
@@ -185,6 +186,8 @@ btnCheck.addEventListener('click',()=>
     else
     {
         output1.textContent="PALINDROME DATE 🎉🎊"
+        section1.style.display='none'
+        output2.style.display='none'
     }
 })
 
