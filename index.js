@@ -1,5 +1,6 @@
 const birthdayInput=document.querySelector("#birthday")
 const btnCheck=document.querySelector('#btn-check')
+const btnShowNextDate=document.querySelector('#btn-showNextDate')
 
 function checkIfPlaindrome(str)
 {
@@ -166,8 +167,15 @@ btnCheck.addEventListener('click',()=>
 
     if(dateisPlaindrome===false)
     {
+        btnShowNextDate.style.display='block'
         //console.log(getNextDate(date))
         let nextPlaindromeDate=findNextPlaindromeDate(date)
         console.log(nextPlaindromeDate)
     }
+})
+
+btnShowNextDate.addEventListener('click',()=>
+{
+    console.log('show clicked')
+    
 })
