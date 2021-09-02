@@ -5,27 +5,27 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
-    <title>Document</title>
+    <title>Palindrome</title>
 </head>
 <body>
     <header>
-        <h1>Palindrome Bday</h1>
+        <h1>Palindrome B-day🎂</h1>
         <p id="intro">Enter your birthdate to check if it's palindrome or not.</p>
     </header>
     <main>
         <div class="container">
-            <input type="date" name="bday" id="birthday">
+            <input type="date" name="bday" id="birthday" required>
             <button id="btn-check">Check</button>
         </div>
         <div class="container">
-            <h4 id="output1"></h4>
+            <p id="output1"></p>
         </div>
         <div class="container">
             <p id="msg">Want to know the nearest palindrome date from your birthdate ?</p>
             <button id="btn-showNextDate">Show</button>
         </div>
         <div class="container">
-            <p id="output2"></p>
+            <p id="output2">The next palindrome date is <span id="output-date"></span>, missed by <span id="count"></span> days</p>
         </div>
     </main>
     <script src="index.js"></script>   
