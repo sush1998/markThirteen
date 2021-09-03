@@ -41,7 +41,7 @@ function lookforPlaindrome(dateArr)
     {
         if(checkIfPlaindrome(dateArr[i]))
         {
-            console.log(dateArr[i])
+            //console.log(dateArr[i])
             isPlaindrome=true;
             break;
         }
