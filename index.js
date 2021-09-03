@@ -7,6 +7,7 @@ const output2=document.querySelector("#output2")
 const outputDate=document.querySelector("#output-date")
 const outputCount=document.querySelector('#count')
 const section1=document.querySelector("#section1")
+const errorText=document.querySelector("#error")
 
 function checkIfPlaindrome(str)
 {
@@ -15,7 +16,7 @@ function checkIfPlaindrome(str)
 function convertDatetoString(date)
 {
     let dateStr=date.day+""+date.month+""+date.year;
-    console.log(dateStr)
+    //console.log(dateStr)
     return dateStr
 }
 
@@ -84,6 +85,47 @@ function datetoObject(day,month,year)
     }
 }
 
+function getPreviousDate(date)
+{
+    let day=parseInt(date.day)-1;
+    let month=parseInt(date.month)
+    let year=parseInt(date.year)
+
+    let daysinMonth=[31,28,31,30,31,30,31,31,30,31,30,31] 
+
+    if(month===3)
+    {
+        if(isYearLeap(year))
+        {
+            if(day<1)
+            {
+                day=29;
+            }
+        }
+        else
+        {
+            day=28;
+        }
+        month=2;
+    }
+    else
+    {
+        if(day<1)
+        {
+            day=daysinMonth[month-2]
+            month-=1
+        }
+
+        if(month<1)
+        {
+            year-=1;
+            month=12
+            day=daysinMonth[month-1]
+        }
+    }
+    let previousDate=datetoObject(day,month,year)
+    return previousDate;
+}
 function getNextDate(date)
 {
     let day=parseInt(date.day)+1;
@@ -101,13 +143,13 @@ function getNextDate(date)
                 day=1;
                 month=3;
             }
-            else
+        }
+        else
+        {
+            if(day>28)
             {
-                if(day>28)
-                {
-                    day=1;
-                    month=3;
-                }
+                day=1;
+                month=3;
             }
         }
     }
@@ -133,26 +175,45 @@ function getNextDate(date)
 
 function findNextPlaindromeDate(date)
 {
-    let count=1;
+    let countNext=1;
     let nextDate=getNextDate(date)
 
     while(1)
     {
         if(plaindrome(nextDate))
         {
-            //console.log(`next palindrome date is ${convertDatetoString(nextDate)} missed by ${count} days`)
-            outputDate.textContent=`${nextDate.day}-${nextDate.month}-${nextDate.year}`
-            outputCount.textContent=`${count}`
+            console.log(nextDate+'  '+countNext)
             break;
         }
         else{
             nextDate=getNextDate(nextDate)
-            count++
+            countNext++
         }
     }
-    return nextDate
+    return [nextDate,countNext];
 }
 
+function findPreviousPalindromeDate(date)
+{
+    let countPrevious=1;
+    let previousDate=getPreviousDate(date);
+
+    while(1)
+    {
+        if(plaindrome(previousDate))
+        {
+            console.log(previousDate+'  '+countPrevious)
+            break;
+        }
+        else
+        {
+            previousDate=getPreviousDate(previousDate)
+            countPrevious++
+        }
+    }
+
+    return [previousDate,countPrevious];
+}
 
 function plaindrome(date)
 {
@@ -162,16 +223,29 @@ function plaindrome(date)
 
 btnCheck.addEventListener('click',()=>
 {
-    //console.log(birthdayInput.value)
+    //console.log("input  :"+birthdayInput.value)
+
+    if(birthdayInput.value==='')
+    {
+        errorText.style.display="block"
+        section1.style.display='none'
+        output1.style.display='none'
+        output2.style.display='none'
+        return;
+    }
+    else{
+        errorText.style.display="none"
+    }
+
     let birthday=birthdayInput.value.split("-")
     let date={
         day:birthday[2],
         month:birthday[1],
         year:birthday[0]
     }
-    console.log(date)
+   // console.log(date)
     let dateisPlaindrome=plaindrome(date)
-    console.log(dateisPlaindrome)
+    //console.log(dateisPlaindrome)
     output1.style.display='block'
     if(dateisPlaindrome===false)
     {
@@ -179,9 +253,21 @@ btnCheck.addEventListener('click',()=>
         output1.textContent="NOT A PALINDROME DATE 😢"
         btnShowNextDate.style.display='block'
         msg.style.display='block'
-        //console.log(getNextDate(date))
-        let nextPlaindromeDate=findNextPlaindromeDate(date)
-        console.log(nextPlaindromeDate)
+        let [previousDate,countPrevious]=findPreviousPalindromeDate(date)
+        let [nextDate,countNext]=findNextPlaindromeDate(date)
+
+        console.log(nextDate)
+        if(countNext<countPrevious)
+        {
+            outputDate.textContent=`${nextDate.day}-${nextDate.month}-${nextDate.year}`
+            outputCount.textContent=`${countNext}`
+        }
+        else
+        {
+            outputDate.textContent=`${previousDate.day}-${previousDate.month}-${previousDate.year}`
+            outputCount.textContent=`${countPrevious}`
+        }
+    
     }
     else
     {
