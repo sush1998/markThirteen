@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
-#btn-showNextDate,#output2,#output1,#msg
+
+#btn-showNextDate,#output2,#output1,#msg,#error
 {
     display: none;
 }
@@ -14,7 +15,7 @@ html
 body
 {
     margin: auto;
-    margin-top: 5rem;
+    margin-top: 3rem;
     width: 60%;
     text-align: center;
     border: 5px solid #000;
@@ -42,7 +43,7 @@ main
 .container
 {
     width:85%;
-    margin: 1.5em auto;
+    margin: 1em auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,17 +56,22 @@ main
     border: 1px solid #000;
     padding: 5px;
 }
+#error
+{
+    font-weight: 800;
+}
 #msg
 {
     font-size: 16px;
     text-shadow: #000 20px;
+    font-weight: 800;
 }
 #output-date,#count
 {
     font-size: larger;
     font-weight: 800;
 }
-#count,#msg,#heart
+#count,#msg,#heart,#error
 {
     color:rgb(238, 32, 32);
     
