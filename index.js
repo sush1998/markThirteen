@@ -246,7 +246,7 @@ btnCheck.addEventListener('click',()=>
     output1.style.display='block'
     if(dateisPlaindrome===false)
     {
-        
+        section1.style.display='block'
         output1.textContent="NOT A PALINDROME DATE 😢"
         btnShowNextDate.style.display='block'
         msg.style.display='block'
