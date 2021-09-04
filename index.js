@@ -93,7 +93,7 @@ function getPreviousDate(date)
 
     let daysinMonth=[31,28,31,30,31,30,31,31,30,31,30,31] 
 
-    if(month===3)
+    if(day===0)
     {
         if(isYearLeap(year))
         {
@@ -114,14 +114,30 @@ function getPreviousDate(date)
         {
             day=daysinMonth[month-2]
             month-=1
-        }
+        month--;
 
-        if(month<1)
+        if(month===0)
         {
-            year-=1;
-            month=12
-            day=daysinMonth[month-1]
+            year--;
+            month=12;
+            day=31;
         }
+        else if(month===2)
+            {
+                if(isYearLeap(year))
+                {
+                    day=29;
+                }
+                else
+                {
+                    day=28;
+                }
+            }
+            else
+            {
+                day=daysinMonth[month-1]
+            }
+        
     }
     let previousDate=datetoObject(day,month,year)
     return previousDate;
