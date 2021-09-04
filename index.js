@@ -95,25 +95,6 @@ function getPreviousDate(date)
 
     if(day===0)
     {
-        if(isYearLeap(year))
-        {
-            if(day<1)
-            {
-                day=29;
-            }
-        }
-        else
-        {
-            day=28;
-        }
-        month=2;
-    }
-    else
-    {
-        if(day<1)
-        {
-            day=daysinMonth[month-2]
-            month-=1
         month--;
 
         if(month===0)
